@@ -1,8 +1,7 @@
 #include <func.h>
 
-//主线程主动使用pthred_detach,则子线程与主线程的约束解除。
-//子线程自由了,会自己退出。主线程也无法使用pthread_join来接收子线程的返回值
-//相当于子线程变成了另一个主线程
+//主线程主动使用pthred_detach,则子线程退出后系统会自动回收其资源,不需要主线程显式地调用pthread_join
+//主线程也无法使用pthread_join来接收子线程的返回值
 
 typedef struct {
     int id;
