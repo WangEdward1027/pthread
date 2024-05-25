@@ -1,6 +1,6 @@
 #include <func.h>
 
-//线程清理函数
+//线程清理函数:pthread_cleanup_push、pthread_cleanup_pop
 
 void cleanup(void* args) {
     char* msg = (char*) args;
