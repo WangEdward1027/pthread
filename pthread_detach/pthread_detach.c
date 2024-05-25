@@ -55,9 +55,12 @@ int main(int argc, char* argv[])
 
     // 主线程：等待子线程结束，并接收返回值
     Student* s1;
+    
+    // 子线程已经处于detached状态,现在主线程使用pthread_join会报错
+    // ./pthread_detach: pthread_join 139830164506368: Invalid argument
     err = pthread_join(tid1, (void**)&s1); // 无限期等待
     if (err) {
-        error(1, err, "pthread_join %lu", tid1);
+        error(1, err, "pthread_join %lu", tid1);    
     }
 
     print_stu_info(s1);
