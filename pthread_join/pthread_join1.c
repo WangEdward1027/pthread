@@ -20,13 +20,13 @@ int main(void) {
     long long n;
     printf("Please input a long long int: ");
     scanf("%lld", &n);
-
-    Section sec1 = {1, n/2};
-    Section sec2 = {n/2+1, n};
     
     // 创建两个线程
     // 第一个线程对区间[1,n/2]累加
-    // 第二个线程对区间(n/2, n]累加
+    // 第二个线程对区间(n/2+1, n]累加
+    Section sec1 = {1, n/2};
+    Section sec2 = {n/2+1, n};
+    
     pthread_t tid1;
     pthread_t tid2;
     int err = pthread_create(&tid1, NULL, start_routine, &sec1);
