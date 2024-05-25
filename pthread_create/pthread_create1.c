@@ -1,6 +1,6 @@
 #include <func.h>
 
-//子线程的创建:pthread_create()
+//子线程的创建:pthread_create(),不传参数
 
 void print_ids(const char* prefix){
     printf("%s: ",prefix);
