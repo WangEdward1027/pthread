@@ -13,6 +13,7 @@ void* start_routine(void* args){
     
     pthread_exit(NULL);  //子线程终止,主动退出
 
+    //子线程已经终止, 后续代码不执行了
     printf("new_thread: You Can not see me!\n");
     return NULL;
 }
