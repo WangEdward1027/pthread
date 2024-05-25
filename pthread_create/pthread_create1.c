@@ -1,5 +1,7 @@
 #include <func.h>
 
+//子线程的创建:pthread_create()
+
 void print_ids(const char* prefix){
     printf("%s: ",prefix);
     printf("pid = %d, ppid = %d, tid = %lu\n", getpid(), getppid(), pthread_self());
@@ -16,7 +18,8 @@ int main(int argc, char* argv[])
 {
     //主线程
     print_ids("main");
-    
+
+    //创建子线程
     pthread_t tid;
     int err = pthread_create(&tid, NULL, start_routine, NULL);
     if(err){
