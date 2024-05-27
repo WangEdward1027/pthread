@@ -60,6 +60,6 @@ int main(int argc, char* argv[])
     }
 
     // 4. 销毁线程池
-    threadpool_destroy(pool);
+    //threadpool_destroy(pool);
     return 0;
 }
