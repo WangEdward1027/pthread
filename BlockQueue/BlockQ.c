@@ -15,7 +15,7 @@ void blockq_destroy(BlockQ* q) {
     pthread_mutex_destroy(&q->mutex);
     pthread_cond_destroy(&q->not_empty);
     pthread_cond_destroy(&q->not_full);
-
+    
     free(q);
 }
 
@@ -49,8 +49,13 @@ E blockq_pop(BlockQ* q) {
     E retval = q->elements[q->front];
     q->front = (q->front + 1) % N;
     q->size--;
+
+    //not_full条件成立，唤醒等待not_full条件的线程
+    pthread_cond_signal(&q->not_full);  //补充
+    
     pthread_mutex_unlock(&q->mutex);
 
+    
     return retval;
 }
 
