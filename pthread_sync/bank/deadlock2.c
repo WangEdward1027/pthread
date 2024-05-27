@@ -14,8 +14,6 @@ typedef struct {
 Account acct1 = {1, "xixi", 1000, PTHREAD_MUTEX_INITIALIZER};
 Account acct2 = {2, "peanut", 100, PTHREAD_MUTEX_INITIALIZER};
 
-pthread_mutex_t protection = PTHREAD_MUTEX_INITIALIZER;
-
 int transfer(Account* acctA, Account* acctB, int money) {
 
     // 2.不能抢占
