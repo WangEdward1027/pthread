@@ -26,7 +26,7 @@ start:
     if (err) {
         // 主动释放获取的锁
         pthread_mutex_unlock(&acctA->mutex);
-        int seconds = rand() % 3;
+        int seconds = rand() % 3;    //注意要随机睡眠一下，保证能错位尝试获取锁
         sleep(seconds);
         goto start;
     }
