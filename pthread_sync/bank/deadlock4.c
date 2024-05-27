@@ -14,6 +14,7 @@ typedef struct {
 Account acct1 = {1, "xixi", 1000, PTHREAD_MUTEX_INITIALIZER};
 Account acct2 = {2, "peanut", 100, PTHREAD_MUTEX_INITIALIZER};
 
+//转账
 int transfer(Account* acctA, Account* acctB, int money) {
     //4.破坏 循环等待 条件: 按id的顺序依次获取锁
     //限制用户申请资源的顺序，都从同一个锁开始申请
