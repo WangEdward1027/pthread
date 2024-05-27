@@ -1,6 +1,7 @@
 #include <func.h>
 
 //银行取钱的例子，研究同步与并发
+//细粒度锁，放在结构体里
 
 typedef struct {
     int id;
