@@ -14,15 +14,15 @@ typedef struct {
 Account acct1 = {1, "xixi", 1000, PTHREAD_MUTEX_INITIALIZER};
 Account acct2 = {2, "peanut", 100, PTHREAD_MUTEX_INITIALIZER};
 
-pthread_mutex_t protection = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t protection = PTHREAD_MUTEX_INITIALIZER;    //加入全局锁 protection
 
 int transfer(Account* acctA, Account* acctB, int money) {
     // 3.持有并等待
-    pthread_mutex_lock(&protection);
-    pthread_mutex_lock(&acctA->mutex);
+    pthread_mutex_lock(&protection);    //申请全局锁    
+    pthread_mutex_lock(&acctA->mutex);  //临界区
     sleep(1);
     pthread_mutex_lock(&acctB->mutex);
-    pthread_mutex_unlock(&protection);
+    pthread_mutex_unlock(&protection);  //释放全局锁
 
     if (acctA->balance < money) {
         pthread_mutex_unlock(&acctA->mutex);
