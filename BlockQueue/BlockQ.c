@@ -1,5 +1,7 @@
 #include "BlockQ.h"
 
+//阻塞队列的实现
+
 // 创建空的阻塞队列
 BlockQ* blockq_create(void) {
     BlockQ* q = (BlockQ*) calloc(1, sizeof(BlockQ));
@@ -37,6 +39,7 @@ void blockq_push(BlockQ* q, E val) {
     q->size++;
     // not_empty条件成立, 唤醒等待not_empty条件的线程
     pthread_cond_signal(&q->not_empty);
+    
     pthread_mutex_unlock(&q->mutex);
 }
 
@@ -55,7 +58,6 @@ E blockq_pop(BlockQ* q) {
     
     pthread_mutex_unlock(&q->mutex);
 
-    
     return retval;
 }
 
