@@ -63,7 +63,7 @@ void* start_routine2(void* args) {
 
 int main(int argc, char* argv[])
 {
-    srand(time(NULL));
+    srand(time(NULL));    //main中设置随机种子
 
     pthread_t tid1, tid2;
 
