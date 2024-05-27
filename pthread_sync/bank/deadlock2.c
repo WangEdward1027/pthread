@@ -21,13 +21,13 @@ int transfer(Account* acctA, Account* acctB, int money) {
     // 2.不能抢占
 start:
     pthread_mutex_lock(&acctA->mutex);
-    sleep(1);
+    sleep(1);   //增大坏的调度发生的概率。不能在这里随机睡，因为手里拿着锁
     int err = pthread_mutex_trylock(&acctB->mutex);
     if (err) {
         // 主动释放获取的锁
         pthread_mutex_unlock(&acctA->mutex);
         int seconds = rand() % 3;    //注意要随机睡眠一下，保证能错位尝试获取锁
-        sleep(seconds);
+        sleep(seconds);              //刚获取锁失败,释放锁后睡一下,相当于重新排队申请
         goto start;
     }
 
