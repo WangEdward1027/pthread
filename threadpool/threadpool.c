@@ -30,9 +30,9 @@ ThreadPool* threadpool_create(int n) {
     pool->threads = (pthread_t*) malloc(n * sizeof(pthread_t));
     pool->nums = n;
     pool->q = blockq_create();
-    // 创建线程
-    for(int i = 0; i < n; i++) {
-        pthread_create(pool->threads + i, NULL, start_routine, (void*)pool);
+    // 创建线程：不断调用pthread_create(),创建多线程
+    for(int i = 0; i < n; i++) {      
+        pthread_create(pool->threads + i, NULL, start_routine, (void*)pool);    
     }
 
     return pool;
